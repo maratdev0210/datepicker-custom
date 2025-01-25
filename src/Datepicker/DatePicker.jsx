@@ -3,64 +3,28 @@ import CalendarDisplay from "./CalendarDisplay";
 import SelectDate from "./SelectDate";
 import { useState } from "react";
 
+function getCalendarData(year) {
+  return {
+    January: 31,
+    February: year % 4 == 0 ? 29 : 28,
+    March: 31,
+    April: 30,
+    May: 31,
+    June: 30,
+    July: 31,
+    August: 31,
+    September: 30,
+    October: 31,
+    November: 30,
+    December: 31,
+  };
+}
+
 export default function DatePicker() {
   const [year, setYear] = useState(2025); // SelectDate component state variable
   const [month, setMonth] = useState("January"); // SelectDate componenet state variable
 
-  const CalendarData = [
-    {
-      weekDay: 0,
-    },
-    {
-      weekDay: 1,
-    },
-    {
-      weekDay: 2,
-    },
-    { weekDay: 3 },
-    { weekDay: 4 },
-    { weekDay: 5 },
-    { weekDay: 6 },
-    {
-      weekDay: 0,
-    },
-    {
-      weekDay: 1,
-    },
-    {
-      weekDay: 2,
-    },
-    { weekDay: 3 },
-    { weekDay: 4 },
-    { weekDay: 5 },
-    { weekDay: 6 },
-    {
-      weekDay: 0,
-    },
-    {
-      weekDay: 1,
-    },
-    {
-      weekDay: 2,
-    },
-    { weekDay: 3 },
-    { weekDay: 4 },
-    { weekDay: 5 },
-    { weekDay: 6 },
-    {
-      weekDay: 0,
-    },
-    {
-      weekDay: 1,
-    },
-    {
-      weekDay: 2,
-    },
-    { weekDay: 3 },
-    { weekDay: 4 },
-    { weekDay: 5 },
-    { weekDay: 6 },
-  ];
+  const CalendarData = getCalendarData(year);
 
   return (
     <>
@@ -71,7 +35,7 @@ export default function DatePicker() {
         setMonth={setMonth}
       />
       <MonthDisplay year={year} month={month} />
-      <CalendarDisplay CalendarData={CalendarData} />
+      <CalendarDisplay year={year} month={month} CalendarData={CalendarData} />
     </>
   );
 }
